@@ -1,6 +1,6 @@
 esphome:
-  name: rasensprenger
-  friendly_name: Rasensprenger
+  name: sprinkler
+  friendly_name: Sprinkler
 
 esp8266:
   board: esp01_1m
@@ -15,93 +15,96 @@ api:
 
 ota:
   password: !pw
-
+# mdns:
+#   disabled: True
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   
+  # use_address: 192.168.0.0
   manual_ip:
       static_ip: 192.168.0.0
       gateway: 192.168.0.0
       subnet: 255.255.0.0
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Rasensprenger Fallback Hotspot"
+    ssid: "Sprinkler Fallback Hotspot"
     password: !wifi_pw
 
 captive_portal:
     
 switch:
-  # Orange
+  # Orange Cable
   - platform: gpio
     pin: GPIO16
-    id: "rasensprenger_mitte"
-    name: "Rasensprenger Mitte"
+    id: "sprinkler_middle"
+    name: "Sprinkler Middle"
     on_turn_on: 
       then:
-      # Make it so that only one channe can be on at once
-        - switch.turn_off: rasensprenger_terrassen
-        - switch.turn_off: rasensprenger_beet_mitte
-        - switch.turn_off: rasensprenger_apfelbaum
-        - switch.turn_off: rasensprenger_bambus
-        - switch.turn_off: tropfbewaesserung
-  # Grün
+      # Make it so that only one channel can be on at once for power consuption reasons.
+      # We don't want the voltage of the ESP to drop below about 4V since it could restart if too little power is available.
+        - switch.turn_off: sprinkler_terrace
+        - switch.turn_off: sprinkler_bed_middle
+        - switch.turn_off: sprinkler_apple_tree
+        - switch.turn_off: sprinkler_bamboo
+        - switch.turn_off: sprinkler_drip
+  # Green Cable
   - platform: gpio
     pin: GPIO5
-    id: "rasensprenger_terrassen"
-    name: "Rasensprenger Terrassen"
+    id: "sprinkler_terrace"
+    name: "Sprinkler Terrace"
     on_turn_on: 
       then:
-        - switch.turn_off: rasensprenger_mitte
-        - switch.turn_off: rasensprenger_beet_mitte
-        - switch.turn_off: rasensprenger_apfelbaum
-        - switch.turn_off: rasensprenger_bambus
-        - switch.turn_off: tropfbewaesserung
-  # Blau
+        - switch.turn_off: sprinkler_middle
+        - switch.turn_off: sprinkler_bed_middle
+        - switch.turn_off: sprinkler_apple_tree
+        - switch.turn_off: sprinkler_bamboo
+        - switch.turn_off: sprinkler_drip
+  # Blue Cable
   - platform: gpio
     pin: GPIO4
-    id: "rasensprenger_beet_mitte"
-    name: "Rasensprenger Beet Mitte"
+    id: "sprinkler_bed_middle"
+    name: "Sprinkler Bed Middle"
     on_turn_on: 
       then:
-        - switch.turn_off: rasensprenger_terrassen
-        - switch.turn_off: rasensprenger_mitte
-        - switch.turn_off: rasensprenger_apfelbaum
-        - switch.turn_off: rasensprenger_bambus
-        - switch.turn_off: tropfbewaesserung
-  # Gelb
+        - switch.turn_off: sprinkler_terrace
+        - switch.turn_off: sprinkler_middle
+        - switch.turn_off: sprinkler_apple_tree
+        - switch.turn_off: sprinkler_bamboo
+        - switch.turn_off: sprinkler_drip
+  # Yellow Cable
   - platform: gpio
     pin: GPIO0
-    id: "rasensprenger_apfelbaum"
-    name: "Rasensprenger Apfelbaum"
+    id: "sprinkler_apple_tree"
+    name: "Sprinkler Apple Tree"
     on_turn_on: 
       then:
-        - switch.turn_off: rasensprenger_terrassen
-        - switch.turn_off: rasensprenger_beet_mitte
-        - switch.turn_off: rasensprenger_mitte
-        - switch.turn_off: rasensprenger_bambus
-        - switch.turn_off: tropfbewaesserung
-  # Rot
+        - switch.turn_off: sprinkler_terrace
+        - switch.turn_off: sprinkler_bed_middle
+        - switch.turn_off: sprinkler_middle
+        - switch.turn_off: sprinkler_bamboo
+        - switch.turn_off: sprinkler_drip
+  # Red Cable
   - platform: gpio
     pin: GPIO2
-    id: "rasensprenger_bambus"
-    name: "Rasensprenger Bambus"
+    id: "sprinkler_bamboo"
+    name: "Sprinkler Bamboo"
     on_turn_on: 
       then:
-        - switch.turn_off: rasensprenger_terrassen
-        - switch.turn_off: rasensprenger_beet_mitte
-        - switch.turn_off: rasensprenger_apfelbaum
-        - switch.turn_off: rasensprenger_mitte
-        - switch.turn_off: tropfbewaesserung
-  # Weiß
+        - switch.turn_off: sprinkler_terrace
+        - switch.turn_off: sprinkler_bed_middle
+        - switch.turn_off: sprinkler_apple_tree
+        - switch.turn_off: sprinkler_middle
+        - switch.turn_off: sprinkler_drip
+  # White Cable
   - platform: gpio
     pin: GPIO14
-    id: "tropfbewaesserung"
-    name: "Tropfbewässerung"
+    id: "sprinkler_drip"
+    name: "Drip Irrigation"
     on_turn_on: 
       then:
-        - switch.turn_off: rasensprenger_terrassen
-        - switch.turn_off: rasensprenger_beet_mitte
-        - switch.turn_off: rasensprenger_apfelbaum
-        - switch.turn_off: rasensprenger_bambus
-        - switch.turn_off: rasensprenger_mitte
+        - switch.turn_off: sprinkler_terrace
+        - switch.turn_off: sprinkler_bed_middle
+        - switch.turn_off: sprinkler_apple_tree
+        - switch.turn_off: sprinkler_bamboo
+        - switch.turn_off: sprinkler_middle
