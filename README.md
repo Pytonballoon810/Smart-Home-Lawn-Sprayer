@@ -5,6 +5,9 @@ A smart way to automate your sprinkler system using 12V solenoid valves and an E
 
 
 ## Parts
+
+*As I live in Germany you might find some links not to work or be too expensive with shipping. Please search some suitable replacements*
+
 - [ESP8266](https://amzn.eu/d/jcvoaGJ) (I used a AZDelivery D1 Mini NodeMcu)
 - [1/2" 12V Solenoid Valves](https://de.aliexpress.com/item/4000325042438.html) (I recommend normally closed (NC) ones since these would not run when no power is connected)(I used 6)
 - [12V Relay Board](https://de.aliexpress.com/item/1005002867727977.html) (I used a 6 channel one)
@@ -12,7 +15,10 @@ A smart way to automate your sprinkler system using 12V solenoid valves and an E
 - 12V Power Supply (I used a 12V 2A one but you can probably use a 12V 1A one if you have less than 6 solenoid valves. I also salvaged mine from an old network switch.)
 - A box to put everything in (I used an old ice cream box)
 - A DC Jack (I salvaged mine from an old router PCB i had laying around) (Note: You can also solder the power supply directly to the buck converter if you don't have a DC Jack laying around)
-- Plumbing parts (I used some 1/2" cast iron fitting T's and some 1/2" male to male connectors)
+- Plumbing parts (I used some 1/2" cast iron fitting T's and some 1/2" male to male connectors
+    + 6x [Malleable Iron Tee](https://www.mcm-systeme.de/Temperguss-T-Stueck-90-3x-Innengewinde-1-2)
+    + 1x [Malleable Iron Threaded Plug](https://www.mcm-systeme.de/Temperguss-Gewindestopfen-Aussengewinde-1-2)
+    + 6x [Galvanized Double Nipple made from Welded Pipe](https://www.mcm-systeme.de/Rohrdoppelnippel-verzinkt-aus-geschweisstem-Rohr-1-2-x-40-mm)
 - [Hose Connectors](https://www.gardena.com/de/produkte/bewaesserung/ogs/hahnverbinder/970521301.html) (I used some 1/2" Gardena hose connectors. Although they are a bit expensive and 3rd party ones could probably also work, I had some trouble with the 3rd party ones not being as tight as the Gardena ones and in turn leaking.)
 - [6.4x0.8mm Blade receptacles](https://amzn.eu/d/a4gvSK1) for connecting the relay board to the solenoid valves (you can also solder the wires directly to the relay board but I would recommend using some connectors in case you need to replace a solenoid valve)
 - Wires (I used some old ATX power supply wires)
